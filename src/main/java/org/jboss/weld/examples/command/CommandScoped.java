@@ -14,7 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.jboss.weld.examples.commandcontext;
+package org.jboss.weld.examples.command;
 
 import static java.lang.annotation.ElementType.FIELD;
 import static java.lang.annotation.ElementType.METHOD;
@@ -29,11 +29,16 @@ import java.lang.annotation.Target;
 import javax.enterprise.context.NormalScope;
 
 /**
+ * Specifies that a bean is command scoped, i.e. the bean lifecycle is bound to the {@link Command} execution.
+ * <p>
+ * The command context should only be active during a {@link Command#execute()} invocation.
  *
  * @author Martin Kouba
+ * @see CommandContext
+ * @see Command
  */
 @NormalScope
-@Target({TYPE, METHOD, FIELD})
+@Target({ TYPE, METHOD, FIELD })
 @Retention(RUNTIME)
 @Documented
 @Inherited

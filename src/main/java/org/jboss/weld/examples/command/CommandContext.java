@@ -14,45 +14,36 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.jboss.weld.examples.commandcontext;
+package org.jboss.weld.examples.command;
 
-import javax.enterprise.context.spi.Contextual;
-import javax.enterprise.context.spi.CreationalContext;
+import javax.enterprise.context.Dependent;
+import javax.enterprise.context.spi.AlterableContext;
 
 /**
+ * This context should be active during a {@link Command#execute()} invocation.
+ * <p>
+ * It's activated/deactivated either by {@link CommandDecorator}, {@link CommandExecutor} or manually (a {@link Dependent} bean is registered for this
+ * interface).
  *
  * @author Martin Kouba
+ * @see CommandScoped
  */
-final class ContextualInstance<T> {
-
-    private final T value;
-
-    private final CreationalContext<T> creationalContext;
-
-    private final Contextual<T> contextual;
+public interface CommandContext extends AlterableContext {
 
     /**
+     * Activate the context.
+     * <p>
+     * No-op if the context is already active.
      *
-     * @param instance
-     * @param creationalContext
-     * @param contextual
+     * @param execution
      */
-    ContextualInstance(T instance, CreationalContext<T> creationalContext, Contextual<T> contextual) {
-        this.value = instance;
-        this.creationalContext = creationalContext;
-        this.contextual = contextual;
-    }
+    void activate();
 
-    T get() {
-        return value;
-    }
-
-    Contextual<T> getContextual() {
-        return contextual;
-    }
-
-    void destroy() {
-        contextual.destroy(value, creationalContext);
-    }
+    /**
+     * Deactive the context and destroy all contextual instances.
+     * <p>
+     * No-op if the context not activated by this bean.
+     */
+    void deactivate();
 
 }

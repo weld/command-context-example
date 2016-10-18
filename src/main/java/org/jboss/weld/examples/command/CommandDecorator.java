@@ -14,29 +14,40 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.jboss.weld.examples.commandcontext;
+package org.jboss.weld.examples.command;
 
-import javax.enterprise.context.Dependent;
+import static javax.interceptor.Interceptor.Priority.LIBRARY_BEFORE;
+
+import javax.annotation.Priority;
+import javax.decorator.Decorator;
+import javax.decorator.Delegate;
 import javax.inject.Inject;
 
 /**
+ * This decorator might be used to activate/deactive command context for commands which are also CDI beans.
  *
  * @author Martin Kouba
  */
-@Dependent
-public class CommandExecutor {
+@Priority(LIBRARY_BEFORE)
+@Decorator
+abstract class CommandDecorator implements Command {
+
+    @Inject
+    @Delegate
+    private Command delegate;
 
     private final CommandContext commandContext;
 
     @Inject
-    public CommandExecutor(CommandExtension commandExtension) {
-        this.commandContext = commandExtension.getCommandContext();
+    CommandDecorator(CommandContext commandContext) {
+        this.commandContext = commandContext;
     }
 
-    public void execute(Command command) {
+    @Override
+    public void execute() {
         try {
             commandContext.activate();
-            command.execute();
+            delegate.execute();
         } finally {
             commandContext.deactivate();
         }

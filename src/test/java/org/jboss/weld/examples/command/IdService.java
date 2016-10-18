@@ -14,15 +14,29 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.jboss.weld.examples.commandcontext;
+package org.jboss.weld.examples.command;
+
+import java.util.UUID;
+
+import javax.annotation.PostConstruct;
 
 /**
+ * There must be exactly one bean instance per {@link Command} execution.
  *
  * @author Martin Kouba
  */
-@FunctionalInterface
-public interface Command {
+@CommandScoped
+public class IdService {
 
-    void execute();
+    private String id;
+
+    @PostConstruct
+    void init() {
+        id = UUID.randomUUID().toString();
+    }
+
+    String getId() {
+        return id;
+    }
 
 }

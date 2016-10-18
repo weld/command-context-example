@@ -14,26 +14,28 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.jboss.weld.examples.commandcontext;
+package org.jboss.weld.examples.command;
 
-import javax.enterprise.event.Observes;
-import javax.enterprise.inject.spi.AfterBeanDiscovery;
-import javax.enterprise.inject.spi.Extension;
+import javax.enterprise.context.ApplicationScoped;
+import javax.inject.Inject;
 
 /**
+ * Dummy {@link ApplicationScoped} service which injects {@link CommandScoped} beans and puts {@link IdService#getId()} in
+ * {@link CommandExecution#getAttributes()} map.
  *
  * @author Martin Kouba
  */
-class CommandExtension implements Extension {
+@ApplicationScoped
+public class DummyService {
 
-    private final CommandContext commandContext = new CommandContext();
+    @Inject
+    private CommandExecution commandExecution;
 
-    void afterBeanDiscovery(@Observes AfterBeanDiscovery event) {
-        event.addContext(commandContext);
-    }
+    @Inject
+    private IdService idService;
 
-    CommandContext getCommandContext() {
-        return commandContext;
+    void doSomeDummyLogic() {
+        commandExecution.getAttributes().put("id", idService.getId());
     }
 
 }
