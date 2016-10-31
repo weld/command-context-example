@@ -7,7 +7,9 @@ import java.util.Map;
 import javax.enterprise.inject.Vetoed;
 
 /**
- * Represents a single command execution state.
+ * Represents a single command execution.
+ * <p>
+ * A custom bean with bean type {@link CommandExecution} and scope {@link CommandScoped} is automatically registered.
  * <p>
  * It's not thread-safe.
  *

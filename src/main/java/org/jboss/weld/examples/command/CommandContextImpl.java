@@ -31,13 +31,14 @@ import javax.enterprise.inject.spi.BeanManager;
  * {@link CommandContext} implementation.
  *
  * @author Martin Kouba
+ * @see CommandScoped
  */
 @Vetoed
 class CommandContextImpl implements CommandContext {
 
     private static final Logger LOGGER = Logger.getLogger(CommandContextImpl.class.getName());
 
-    // It's a normal scope so there must may be no more than one mapped instance per contextual type per thread
+    // It's a normal scope so there may be no more than one mapped instance per contextual type per thread
     private final ThreadLocal<Map<Contextual<?>, ContextualInstance<?>>> currentContext = new ThreadLocal<>();
 
     private final ThreadLocal<CommandExecution> currentCommandExecution = new ThreadLocal<>();
@@ -184,6 +185,7 @@ class CommandContextImpl implements CommandContext {
     }
 
     /**
+     * This wrapper allows to create and destroy a bean instance properly.
      *
      * @author Martin Kouba
      *
