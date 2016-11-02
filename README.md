@@ -17,9 +17,10 @@ As a bonus we would like to be able to inject `CommandExecution` metadata (and s
 
 ## Implementation
 
-First, we have to provide a scope annotation:
+First of all, we need to provide a scope annotation:
 
 ```java
+@NormalScope
 public @interface CommandScoped {
 }
 ```
@@ -30,7 +31,7 @@ This implies few facts and requirements:
 * whenever you inject a `@CommandScoped` bean you get a client proxy, this allows e.g. to inject a `@CommandScoped` bean into `@ApplicationScoped` bean
 * there may be no more than one mapped bean instance per `@CommandScoped` bean per thread
 
-See also the spec - (6.3. Normal scopes and pseudo-scopes)[http://docs.jboss.org/cdi/spec/1.2/cdi-spec.html#normal_scope]
+See also the spec - [6.3. Normal scopes and pseudo-scopes](http://docs.jboss.org/cdi/spec/1.2/cdi-spec.html#normal_scope).
 
 The other important class is `CommandContextImpl`.
 Few things to notice:
