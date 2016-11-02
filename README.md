@@ -46,3 +46,10 @@ Few things to notice:
 
 The custom context can be activated/deactivated either by `CommandDecorator`, `CommandExecutor` or manually - a `@Dependent` bean with bean type `CommandContext` and qualifier `@Default` is automatically registered.
 See also the tests and compare the different ways of activating the context.
+
+## Tests
+
+All the tests use [Weld SE programmatic bootstrap API](http://docs.jboss.org/weld/reference/latest/en-US/html/environments.html#_bootstrapping_cdi_se).
+This allows us to:
+* run the tests as regular unit tests - no Java EE container is needed
+* disable automatic discovery and gain the full control of scanning
