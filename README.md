@@ -1,6 +1,7 @@
 # Command context example
 
 This example project shows how to implement a custom CDI context with all the extras (including activation and deactivation).
+This branch uses CDI 1.2 and Weld 2.x.
 
 ## Mission
 
