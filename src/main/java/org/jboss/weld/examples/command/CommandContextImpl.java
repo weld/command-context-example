@@ -80,7 +80,10 @@ class CommandContextImpl implements CommandContext {
         if (ctx == null) {
             return;
         }
-        ctx.remove(contextual);
+        ContextualInstance<?> contextualInstance = ctx.remove(contextual);
+        if (contextualInstance != null) {
+            contextualInstance.destroy();
+        }
     }
 
     public void activate() {

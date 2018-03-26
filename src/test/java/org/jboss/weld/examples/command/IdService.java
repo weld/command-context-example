@@ -17,8 +17,10 @@
 package org.jboss.weld.examples.command;
 
 import java.util.UUID;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
 
 /**
  * There must be exactly one bean instance per {@link Command} execution.
@@ -30,13 +32,25 @@ public class IdService {
 
     private String id;
 
+    private AtomicBoolean isDestroyed;
+
     @PostConstruct
     void init() {
         id = UUID.randomUUID().toString();
+        isDestroyed = new AtomicBoolean(false);
+    }
+
+    @PreDestroy
+    void destroy() {
+        isDestroyed.set(true);
     }
 
     String getId() {
         return id;
+    }
+
+    public boolean isDestroyed() {
+        return isDestroyed.get();
     }
 
 }
