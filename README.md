@@ -1,7 +1,10 @@
 # Command context example
 
 This example project shows how to implement a custom CDI context with all the extras (including activation and deactivation).
-This branch uses CDI 2.0 and Weld 3.x.
+This branch uses CDI 4.1 and Weld 6.0.
+
+> [!NOTE]  
+> If you are looking for the same example with CDI 2.0 and Weld 3 (using `javax` namespace), [here](https://github.com/weld/command-context-example/tree/cdi20_weld3) is the branch.
 
 ## Mission
 

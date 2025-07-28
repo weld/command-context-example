@@ -2,7 +2,7 @@ package org.jboss.weld.examples.command;
 
 import org.jboss.weld.environment.se.Weld;
 import org.jboss.weld.environment.se.WeldContainer;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 /**
  *

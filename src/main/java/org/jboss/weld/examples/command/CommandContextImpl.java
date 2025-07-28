@@ -21,11 +21,11 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.logging.Logger;
 
-import javax.enterprise.context.ContextNotActiveException;
-import javax.enterprise.context.spi.Contextual;
-import javax.enterprise.context.spi.CreationalContext;
-import javax.enterprise.inject.Vetoed;
-import javax.enterprise.inject.spi.BeanManager;
+import jakarta.enterprise.context.ContextNotActiveException;
+import jakarta.enterprise.context.spi.Contextual;
+import jakarta.enterprise.context.spi.CreationalContext;
+import jakarta.enterprise.inject.Vetoed;
+import jakarta.enterprise.inject.spi.BeanManager;
 
 /**
  * {@link CommandContext} implementation.
@@ -113,7 +113,8 @@ class CommandContextImpl implements CommandContext {
     }
 
     /**
-     * We use this injectable version to detect the original "activator", so that we can skip deactivation during {@link #deactivate()} if needed.
+     * We use this injectable version to detect the original "activator", so that we can skip deactivation during
+     * {@link #deactivate()} if needed.
      *
      * @author Martin Kouba
      *

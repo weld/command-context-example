@@ -16,13 +16,14 @@
  */
 package org.jboss.weld.examples.command;
 
-import javax.enterprise.context.Dependent;
-import javax.enterprise.context.spi.AlterableContext;
+import jakarta.enterprise.context.Dependent;
+import jakarta.enterprise.context.spi.AlterableContext;
 
 /**
  * This context should be active during a {@link Command#execute()} invocation.
  * <p>
- * It's activated/deactivated either by {@link CommandDecorator}, {@link CommandExecutor} or manually (a {@link Dependent} bean is registered for this
+ * It's activated/deactivated either by {@link CommandDecorator}, {@link CommandExecutor} or manually (a {@link Dependent} bean
+ * is registered for this
  * interface).
  *
  * @author Martin Kouba
@@ -34,8 +35,6 @@ public interface CommandContext extends AlterableContext {
      * Activate the context.
      * <p>
      * No-op if the context is already active.
-     *
-     * @param execution
      */
     void activate();
 

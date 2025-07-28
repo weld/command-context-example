@@ -16,14 +16,12 @@
  */
 package org.jboss.weld.examples.command;
 
-import java.util.Collections;
-
-import javax.enterprise.context.Dependent;
-import javax.enterprise.event.Observes;
-import javax.enterprise.inject.Default;
-import javax.enterprise.inject.spi.AfterBeanDiscovery;
-import javax.enterprise.inject.spi.BeanManager;
-import javax.enterprise.inject.spi.Extension;
+import jakarta.enterprise.context.Dependent;
+import jakarta.enterprise.event.Observes;
+import jakarta.enterprise.inject.Default;
+import jakarta.enterprise.inject.spi.AfterBeanDiscovery;
+import jakarta.enterprise.inject.spi.BeanManager;
+import jakarta.enterprise.inject.spi.Extension;
 
 import org.jboss.weld.examples.command.CommandContextImpl.InjectableCommandContext;
 
@@ -44,19 +42,19 @@ class CommandExtension implements Extension {
 
         // Register the command context bean using CDI 2 configurators API
         event.addBean()
-            .addType(CommandContext.class)
-            .createWith(ctx -> new InjectableCommandContext(commandContext, beanManager))
-            .addQualifier(Default.Literal.INSTANCE)
-            .scope(Dependent.class)
-            .beanClass(CommandExtension.class);
+                .addType(CommandContext.class)
+                .createWith(ctx -> new InjectableCommandContext(commandContext, beanManager))
+                .addQualifier(Default.Literal.INSTANCE)
+                .scope(Dependent.class)
+                .beanClass(CommandExtension.class);
 
         // Register the CommandExecution bean using CDI 2 configurators API
         event.addBean()
-            .createWith(ctx -> commandContext.getCurrentCommandExecution())
-            .addType(CommandExecution.class)
-            .addQualifier(Default.Literal.INSTANCE)
-            .scope(CommandScoped.class)
-            .beanClass(CommandExtension.class);
+                .createWith(ctx -> commandContext.getCurrentCommandExecution())
+                .addType(CommandExecution.class)
+                .addQualifier(Default.Literal.INSTANCE)
+                .scope(CommandScoped.class)
+                .beanClass(CommandExtension.class);
     }
 
 }

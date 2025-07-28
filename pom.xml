@@ -8,7 +8,7 @@
    <parent>
       <groupId>org.jboss.weld</groupId>
       <artifactId>weld-parent</artifactId>
-      <version>35</version>
+      <version>56</version>
    </parent>
 
    <licenses>
@@ -27,11 +27,14 @@
 
    <properties>
       <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-      <maven.compiler.source>1.8</maven.compiler.source>
-      <maven.compiler.target>1.8</maven.compiler.target>
+      <!-- Maven Compiler plugin configuration defined in Weld Parent -->
+      <maven.compiler.argument.source>17</maven.compiler.argument.source>
+      <maven.compiler.argument.target>17</maven.compiler.argument.target>
+      <maven.compiler.argument.testSource>17</maven.compiler.argument.testSource>
+      <maven.compiler.argument.testTarget>17</maven.compiler.argument.testTarget>
       <!-- Versions -->
-      <version.weld>3.0.3.Final</version.weld>
-      <version.junit>4.12</version.junit>
+      <version.weld>6.0.3.Final</version.weld>
+      <version.junit>5.13.4</version.junit>
    </properties>
 
    <dependencies>
@@ -44,8 +47,8 @@
 
       <!-- Test dependencies -->
       <dependency>
-         <groupId>junit</groupId>
-         <artifactId>junit</artifactId>
+         <groupId>org.junit.jupiter</groupId>
+         <artifactId>junit-jupiter</artifactId>
          <version>${version.junit}</version>
          <scope>test</scope>
       </dependency>

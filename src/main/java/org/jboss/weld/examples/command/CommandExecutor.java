@@ -16,8 +16,8 @@
  */
 package org.jboss.weld.examples.command;
 
-import javax.enterprise.context.Dependent;
-import javax.inject.Inject;
+import jakarta.enterprise.context.Dependent;
+import jakarta.inject.Inject;
 
 /**
  * This bean allows to activate/deactivate command context for any {@link Command} implementation, i.e. also for non-CDI beans.

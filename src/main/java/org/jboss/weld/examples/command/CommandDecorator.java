@@ -16,12 +16,12 @@
  */
 package org.jboss.weld.examples.command;
 
-import static javax.interceptor.Interceptor.Priority.LIBRARY_BEFORE;
+import static jakarta.interceptor.Interceptor.Priority.LIBRARY_BEFORE;
 
-import javax.annotation.Priority;
-import javax.decorator.Decorator;
-import javax.decorator.Delegate;
-import javax.inject.Inject;
+import jakarta.annotation.Priority;
+import jakarta.decorator.Decorator;
+import jakarta.decorator.Delegate;
+import jakarta.inject.Inject;
 
 /**
  * This decorator might be used to activate/deactive command context for commands which are also CDI beans.
