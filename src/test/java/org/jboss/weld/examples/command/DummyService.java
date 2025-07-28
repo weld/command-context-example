@@ -16,8 +16,8 @@
  */
 package org.jboss.weld.examples.command;
 
-import javax.enterprise.context.ApplicationScoped;
-import javax.inject.Inject;
+import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.inject.Inject;
 
 /**
  * Dummy {@link ApplicationScoped} service which injects {@link CommandScoped} beans and puts {@link IdService#getId()} in
